@@ -1,0 +1,54 @@
+hc-info
+
+Get info about the available HSA devices using HC C++ API.
+see: https://github.com/RadeonOpenCompute/hcc
+
+
+Building
+
+The hcc compiler is needed. Install the ROCm Platform from
+https://github.com/RadeonOpenCompute/ROCm to get it.
+CMake is also needed.
+
+Build it with:
+mkdir build
+cd build
+cmake ..
+make
+
+Optionally cl-info can be installed with:
+make install
+
+
+Sample Output:
+
+$ ./hc-info
+2 available accelerators:
+
+device path:             cpu
+description:             CPU Device
+version:                 0
+has display:             false
+dedicated memory:        0 KB
+double precision:        yes
+debug:                   false
+emulated:                true
+CPU shared memory:       1
+access type:             read write
+HSA Profile:             none
+peers:                   -
+
+device path:             Kaveri0
+description:             AMD HSA Agent Kaveri0
+version:                 0
+has display:             false
+dedicated memory:        0 KB
+double precision:        yes
+debug:                   false
+emulated:                false
+CPU shared memory:       0
+access type:             read write
+HSA Profile:             full
+peers:                   Kaveri0 
+
+default accelerator:    Kaveri0
