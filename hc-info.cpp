@@ -97,6 +97,8 @@ void display_usage(std::ostream& out=std::cout)
   out << '\n';
   out << "prints information about the available HSA devices for the HC API\n";
   out << "see: https://github.com/RadeonOpenCompute/hcc\n";
+  out << '\n';
+  out << "HCC version: " << __hcc_version__ << '\n';
 }
 
 } // namespace 
@@ -107,6 +109,7 @@ int main(int argc, char* argv[])
     display_usage(std::cerr);
     return EXIT_FAILURE;
   }
+
 
   if (2 == argc) {
     std::string path = argv[1];
