@@ -62,13 +62,22 @@ std::wstring bool_str(bool value)
   return value ? L"true": L"false";
 }
 
+std::wstring version_string(const hc::accelerator& acc)
+{
+  unsigned int version {acc.get_version()};
+  unsigned minor { version & ((1 << 16) -1) };
+  unsigned major { version >> 16 };
+
+  return std::to_wstring(major) + L'.' + std::to_wstring(minor);
+}
+
 std::wostream& operator<<(std::wostream& out, const hc::accelerator acc)
 {
   auto setw = [](){ return std::setw(25); };
   out << std::left;
   out << setw() << "device path:" << acc.get_device_path() << '\n';
   out << setw() << "description:" << acc.get_description() << '\n';
-  out << setw() << "version:" << acc.get_version() << '\n';
+  out << setw() << "version:" << version_string(acc) << '\n';
   out << setw() << "has display:" << bool_str(acc.get_has_display()) << '\n';
   out << setw() << "dedicated memory:" << acc.get_dedicated_memory() << " KB\n";
   out << setw() << "double precision:" << double_precision_str(acc) << '\n';

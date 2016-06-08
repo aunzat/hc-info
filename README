@@ -27,7 +27,7 @@ $ ./hc-info
 
 device path:             cpu
 description:             CPU Device
-version:                 0
+version:                 0.0
 has display:             false
 dedicated memory:        0 KB
 double precision:        yes
@@ -40,7 +40,7 @@ peers:                   -
 
 device path:             Kaveri0
 description:             AMD HSA Agent Kaveri0
-version:                 0
+version:                 0.0
 has display:             false
 dedicated memory:        0 KB
 double precision:        yes
