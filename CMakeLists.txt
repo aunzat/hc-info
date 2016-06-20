@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.0)
-project(hc-info)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -26,6 +25,8 @@ execute_process(COMMAND ${HCC_CONFIG_COMMAND} --ldflags
 ## hc-config
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS}")
 
+
+project(hc-info)
 add_executable(hc-info hc-info.cpp)
 
 install(TARGETS hc-info DESTINATION bin)
