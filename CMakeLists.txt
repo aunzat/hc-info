@@ -9,11 +9,13 @@ if(NOT HCC_COMMAND)
 endif()
 set(CMAKE_CXX_COMPILER ${HCC_COMMAND})
 
-## hcc compile flags
+## hcc-config
 find_program(HCC_CONFIG_COMMAND NAMES hcc-config HINTS ENV HCC_HOME)
 if(NOT HCC_CONFIG_COMMAND)
   message(FATAL_ERROR "hcc-config program not found.")
 endif()
+
+project(hc-info)
 
 execute_process(COMMAND ${HCC_CONFIG_COMMAND} --cxxflags
   OUTPUT_VARIABLE CMAKE_CXX_FLAGS
@@ -22,11 +24,6 @@ execute_process(COMMAND ${HCC_CONFIG_COMMAND} --ldflags
   OUTPUT_VARIABLE CMAKE_EXE_LINKER_FLAGS
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-## hc-config
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS}")
-
-
-project(hc-info)
 add_executable(hc-info hc-info.cpp)
 
 install(TARGETS hc-info DESTINATION bin)
