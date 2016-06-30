@@ -71,7 +71,7 @@ std::wstring version_string(const hc::accelerator& acc)
   return std::to_wstring(major) + L'.' + std::to_wstring(minor);
 }
 
-std::wostream& operator<<(std::wostream& out, const hc::accelerator acc)
+std::wostream& operator<<(std::wostream& out, const hc::accelerator& acc)
 {
   auto setw = [](){ return std::setw(25); };
   out << std::left;
@@ -84,6 +84,8 @@ std::wostream& operator<<(std::wostream& out, const hc::accelerator acc)
   out << setw() << "debug:" << bool_str(acc.get_is_debug()) << '\n';
   out << setw() << "emulated:" << bool_str(acc.get_is_emulated()) << '\n';
   out << setw() << "CPU shared memory:"<< acc.get_supports_cpu_shared_memory() << '\n';
+
+  out << setw() << "max static tile size:"<< const_cast<hc::accelerator&>(acc).get_max_tile_static_size() << '\n';
 
   out << setw() << "access type:" << acc.get_default_cpu_access_type() << '\n';
   out << setw() << "HSA Profile:" << acc.get_profile() << '\n';
