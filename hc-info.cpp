@@ -102,6 +102,21 @@ std::wostream& operator<<(std::wostream& out, const hc::accelerator& acc)
   return out;
 }
 
+std::string backend_str(int backend)
+{
+  switch (backend) {
+    case HCC_BACKEND_AMDGPU:
+      return "HCC_BACKEND_AMDGPU";
+    case HCC_BACKEND_HSAIL:
+      return "HCC_BACKEND_HSAIL";
+    case HCC_BACKEND_CL:
+      return "HCC_BACKEND_CL";
+
+    default:
+      return "Unknown HCC Backend";
+  }
+}
+
 void display_usage(std::ostream& out=std::cout)
 {
   out << "usage: hc-info [DEVICE-PATH]\n";
@@ -109,7 +124,9 @@ void display_usage(std::ostream& out=std::cout)
   out << "prints information about the available HSA devices for the HC API\n";
   out << "see: https://github.com/RadeonOpenCompute/hcc\n";
   out << '\n';
+  out << "compiled for:\n";
   out << "HCC version: " << __hcc_version__ << '\n';
+  out << "Backend: " << backend_str(__hcc_backend__) << '\n';
 }
 
 } // namespace 
