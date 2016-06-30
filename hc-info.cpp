@@ -73,24 +73,33 @@ std::wstring version_string(const hc::accelerator& acc)
 
 std::wostream& operator<<(std::wostream& out, const hc::accelerator& acc)
 {
-  auto setw = [](){ return std::setw(25); };
   out << std::left;
-  out << setw() << "device path:" << acc.get_device_path() << '\n';
-  out << setw() << "description:" << acc.get_description() << '\n';
-  out << setw() << "version:" << version_string(acc) << '\n';
-  out << setw() << "has display:" << bool_str(acc.get_has_display()) << '\n';
-  out << setw() << "dedicated memory:" << acc.get_dedicated_memory() << " KB\n";
-  out << setw() << "double precision:" << double_precision_str(acc) << '\n';
-  out << setw() << "debug:" << bool_str(acc.get_is_debug()) << '\n';
-  out << setw() << "emulated:" << bool_str(acc.get_is_emulated()) << '\n';
-  out << setw() << "CPU shared memory:"<< acc.get_supports_cpu_shared_memory() << '\n';
+  auto out_w = [&]() -> std::wostream& { return out << std::setw(25); };
 
-  out << setw() << "max static tile size:"<< const_cast<hc::accelerator&>(acc).get_max_tile_static_size() << '\n';
+  out_w() << "device path:" << acc.get_device_path() << '\n';
+  out_w() << "description:" << acc.get_description() << '\n';
+  out_w() << "version:" << version_string(acc) << '\n';
 
-  out << setw() << "access type:" << acc.get_default_cpu_access_type() << '\n';
-  out << setw() << "HSA Profile:" << acc.get_profile() << '\n';
+  out_w() << "dedicated memory:" << acc.get_dedicated_memory() << " KB\n";
+  out_w() << "CPU shared memory:"
+    << bool_str(acc.get_supports_cpu_shared_memory()) << '\n';
 
-  out << setw() << "peers:";
+  out_w() << "max static tile size:"
+    << const_cast<hc::accelerator&>(acc).get_max_tile_static_size() << '\n';
+
+  out_w() << "default CPU mem access:"
+    << acc.get_default_cpu_access_type() << '\n';
+
+
+  out_w() << "double precision:" << double_precision_str(acc) << '\n';
+
+  out_w() << "debug:" << bool_str(acc.get_is_debug()) << '\n';
+  out_w() << "has display:" << bool_str(acc.get_has_display()) << '\n';
+  out_w() << "emulated:" << bool_str(acc.get_is_emulated()) << '\n';
+
+  out_w() << "HSA Profile:" << acc.get_profile() << '\n';
+
+  out_w() << "peers:";
   const auto peers = acc.get_peers();
   std::for_each(std::begin(peers), std::end(peers),
       [&out](const hc::accelerator& p) { out << p.get_device_path() << " "; });
