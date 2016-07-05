@@ -159,9 +159,14 @@ int main(int argc, char* argv[])
 
     std::wstring wpath = u8towide.from_bytes(path);
     try {
-      std::wcout << hc::accelerator(wpath);
+      const hc::accelerator acc(wpath);
+      if (acc.get_device_path() != wpath) { // hc::acc does not throw on no dev
+        throw std::runtime_error("no accelerator");
+      }
+
+      std::wcout << acc;
     } catch (...) {
-      std::cerr << "error getting accelerator for path: " << path << '\n';
+      std::cerr << "no accelerator for path: '" << path << "'\n";
       return EXIT_FAILURE;
     }
   } else {
