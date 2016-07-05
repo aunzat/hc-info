@@ -17,6 +17,7 @@ endif()
 
 project(hc-info)
 
+
 execute_process(COMMAND ${HCC_CONFIG_COMMAND} --cxxflags
   OUTPUT_VARIABLE CMAKE_CXX_FLAGS
   OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -27,3 +28,11 @@ execute_process(COMMAND ${HCC_CONFIG_COMMAND} --ldflags
 add_executable(hc-info hc-info.cpp)
 
 install(TARGETS hc-info DESTINATION bin)
+
+# tests
+include(CTest)
+
+add_test(execute hc-info)
+
+add_test(invalid_path hc-info "no_an_accelerator_path")
+set_tests_properties(invalid_path PROPERTIES WILL_FAIL TRUE)
