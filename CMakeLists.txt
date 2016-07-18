@@ -32,7 +32,9 @@ install(TARGETS hc-info DESTINATION bin)
 # tests
 include(CTest)
 
-add_test(execute hc-info)
+add_test(list_all hc-info)
 
 add_test(invalid_path hc-info "no_an_accelerator_path")
 set_tests_properties(invalid_path PROPERTIES WILL_FAIL TRUE)
+
+add_test(default_accelerator hc-info "default")

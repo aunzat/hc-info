@@ -90,7 +90,6 @@ std::wostream& operator<<(std::wostream& out, const hc::accelerator& acc)
   out_w() << "default CPU mem access:"
     << acc.get_default_cpu_access_type() << '\n';
 
-
   out_w() << "double precision:" << double_precision_str(acc) << '\n';
 
   out_w() << "debug:" << bool_str(acc.get_is_debug()) << '\n';
@@ -128,7 +127,7 @@ std::string backend_str(int backend)
 
 void display_usage(std::ostream& out=std::cout)
 {
-  out << "usage: hc-info [DEVICE-PATH]\n";
+  out << "usage: hc-info [DEVICE-PATH | default]\n";
   out << '\n';
   out << "prints information about the available HSA devices for the HC API\n";
   out << "see: https://github.com/RadeonOpenCompute/hcc\n";
@@ -160,7 +159,7 @@ int main(int argc, char* argv[])
     std::wstring wpath = u8towide.from_bytes(path);
     try {
       const hc::accelerator acc(wpath);
-      if (acc.get_device_path() != wpath) { // hc::acc does not throw on no dev
+      if (wpath != L"default" && acc.get_device_path() != wpath) { // hc::acc does not throw on no dev
         throw std::runtime_error("no accelerator");
       }
 
