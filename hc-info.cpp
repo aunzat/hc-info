@@ -90,6 +90,8 @@ std::wostream& operator<<(std::wostream& out, const hc::accelerator& acc)
   out_w() << "default CPU mem access:"
     << acc.get_default_cpu_access_type() << '\n';
 
+  out_w() << "compute unit count:" << acc.get_cu_count() << '\n';
+
   out_w() << "double precision:" << double_precision_str(acc) << '\n';
 
   out_w() << "debug:" << bool_str(acc.get_is_debug()) << '\n';

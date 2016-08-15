@@ -24,31 +24,35 @@ Sample Output:
 
 $ ./hc-info
 2 available accelerators:
-
+ 
 device path:             cpu
 description:             CPU Device
 version:                 0.0
-has display:             false
 dedicated memory:        0 KB
+CPU shared memory:       true
+max static tile size:    0
+default CPU mem access:  read write
+compute unit count:      0
 double precision:        yes
 debug:                   false
+has display:             false
 emulated:                true
-CPU shared memory:       1
-access type:             read write
 HSA Profile:             none
 peers:                   -
-
-device path:             Kaveri0
-description:             AMD HSA Agent Kaveri0
-version:                 0.0
-has display:             false
-dedicated memory:        0 KB
+ 
+device path:             Spectre0
+description:             AMD HSA Agent Spectre0
+version:                 1.0
+dedicated memory:        1073741824 KB
+CPU shared memory:       false
+max static tile size:    65536
+default CPU mem access:  read write
+compute unit count:      8
 double precision:        yes
 debug:                   false
+has display:             false
 emulated:                false
-CPU shared memory:       0
-access type:             read write
 HSA Profile:             full
-peers:                   Kaveri0 
-
-default accelerator:    Kaveri0
+peers:                   Spectre0 
+ 
+default accelerator:    Spectre0
