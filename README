@@ -24,7 +24,7 @@ Sample Output:
 
 $ ./hc-info
 2 available accelerators:
- 
+
 device path:             cpu
 description:             CPU Device
 version:                 0.0
@@ -39,10 +39,10 @@ has display:             false
 emulated:                true
 HSA Profile:             none
 peers:                   -
- 
-device path:             Spectre0
-description:             AMD HSA Agent Spectre0
-version:                 1.0
+
+device path:             gfx7000
+description:             AMD HSA Agent gfx7000
+version:                 1.1
 dedicated memory:        1073741824 KB
 CPU shared memory:       false
 max static tile size:    65536
@@ -53,6 +53,6 @@ debug:                   false
 has display:             false
 emulated:                false
 HSA Profile:             full
-peers:                   Spectre0 
- 
-default accelerator:    Spectre0
+peers:                   gfx7000 
+
+default accelerator:	gfx7000
