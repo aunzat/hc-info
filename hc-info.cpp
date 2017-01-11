@@ -1,7 +1,6 @@
 #include <codecvt>
 #include <iomanip>
 #include <iostream>
-#include <locale>
 
 #include <hc.hpp>
 
@@ -139,7 +138,7 @@ void display_usage(std::ostream& out=std::cout)
   out << "Backend: " << backend_str(__hcc_backend__) << '\n';
 }
 
-} // namespace 
+} // namespace
 
 int main(int argc, char* argv[])
 {
